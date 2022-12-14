@@ -130,3 +130,35 @@ function generatePlatform() {
 }
 
 resetGame();
+
+// if user presses space... reset game
+window.addEventListener("keydown", function (event) {
+  if (even.key == " ") {
+    pevent.preventDefault();
+    resetGame();
+    return;
+  }
+});
+
+window.addEventListener("mousedown", function (event) {
+  if (phase == "waiting") {
+    lastTimestamp = undefined;
+    introductionElement.style.opacity = 0;
+    phase = "stretching";
+    window.requestAnimationFrame(animate);
+  }
+});
+
+window.addEventListener("mouseup", function (event) {
+  if (phase == "stretching") {
+    phase = "turning";
+  }
+});
+
+window.addEventListener("resize", function (event) {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  draw();
+});
+
+window.requestAnimationFrame(animate);
