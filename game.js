@@ -98,3 +98,35 @@ function resetGame() {
 
   draw();
 }
+
+function generateTree() {
+  const minimumGap = 30;
+  const maximumGap = 150;
+
+  // x-coord of furthest tree's right edge
+  const lastTree = trees[trees.length-1];
+  let furthestX = lastTree ? lastTree.x : 0;
+
+  const x = furthestX + minimumGap + Math.floor(Math.random() * (maximumGap-minimumGap));
+  const treeColors = ["#6D8821", "#8FAC34", "#98B333"];
+  const color = treeColors[Math.floor(Math.random() * 3)];
+
+  trees.push({x, color});
+}
+
+function generatePlatform() {
+  const minimumGap = 40;
+  const maximumGap = 200;
+  const minimumWidth = 20;
+  const maximumWidth = 100;
+
+  // x-coord of furthest platform's right edge
+  const lastPlatform = platforms[platforms.length-1];
+  let furthestW = lastPlatform.x + lastPlatform.w;
+  const x = furthestX + minimumGap + Math.floor(Math.random() * (maximumGap-minimumGap));
+  const w = minimumWidth + Math.floor(Math.random() * (maximumWidth-minimumWidth));
+
+  platforms.push({x, w});
+}
+
+resetGame();
