@@ -162,3 +162,95 @@ window.addEventListener("resize", function (event) {
 });
 
 window.requestAnimationFrame(animate);
+
+// MAIN GAME LOOP
+function animate(timestamp) {
+  if (!lastTimestamp) {
+    lastTimestamp = timestamp;
+    window.requestAnimationFrame(animate);
+    return;
+  }
+
+  switch (phase) {
+    case "waiting":
+      return; // stop loop
+    case "stretching": {
+      sticks.last().length += (timestamp-lastTimestamp) / stretchingSpeed;
+      break;
+    }
+    case "turning": {
+      sticks.last().rotation += (timestamp-lastTimestamp) / turningVelo;
+
+      if (sticks.last().rotation > 90) {
+        sticks.last().rotation = 90;
+
+        const [nextPlatform, perfectHit] = struckPlatform();
+        if (nextPlatform) {
+          // increase score
+          score += perfectHit ? 2:1;
+          score.innerText = score;
+
+          if (perfectHit) {
+            doubleElement.style.opacity = 1;
+            setTimeout(() => (doubleElement.style.opacity = 0), 1000);
+          }
+          generatePlatform();
+          generateTree();
+          generateTree();
+        }
+        phase = "walking";
+      }
+      break;
+    }
+    case "walking": {
+      manX += (timestamp-lastTimestamp) / walkingSpeed;
+
+      const [nextPlatform] = struckPlatform();
+      if (nextPlatform) {
+        // limit new man position at edge of succesfully traversed platform
+        const maxManX = nextPlatform.x + nextPlatform.w - manDistFromEdge;
+        if (manX > maxManX) {
+          manX = maxManX;
+          phase = "transitioning";
+        }
+      } else {
+        // if he can't reach, limit x-coord at end of stick
+        const maxManX = sticks.last().x + sticks.last().length + manWidth;
+        if (manX > maxManX) {
+          manX = maxManX;
+          phase = "falling";
+        }
+      }
+      break;
+    }
+    case "transitioning": {
+      sceneOffset += (timestamp-lastTimestamp) / transSpeed;
+
+      const [nextPlatform] = struckPlatform();
+      if (sceneOffset > nextPlatform.x  + nextPlatform.w - padX) {
+        // add next strep
+        sticks.push({
+          x: nextPlatform.x + nextPlatform.w,
+          length: 0,
+          rotation: 0
+        });
+        phase = "waiting";
+      }
+      break;
+    }
+    case "falling": {
+      if (sticks.last().rotation < 180) {
+        sticks.last().rotation += (timestamp-lastTimestamp) / turningVelo;
+      }
+
+      manY += (timestamp-lastTimestamp) / fallingSpeed;
+      const maxManY = platformHeight + 100 + (window.innerHeight - canvasHeight) / 2;
+      if (manY > maxManY) {
+        restartButton.style.button = "block";
+        return;
+      }
+      break;
+    }
+    default:
+      throw Error("Wrong phase");
+}
