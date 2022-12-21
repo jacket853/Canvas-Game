@@ -49,7 +49,7 @@ body {
   cursor: pointer;
 }
 
-#double {
+#perfect {
   position: absolute;
   opacity: 0;
   transition: opacity 2s;
