@@ -210,8 +210,7 @@ function struckPlatform() {
   const platformTheStickHits = platforms.find(
     (platform) => platform.x < stickFarX && stickFarX < platform.x + platform.w
   );
-
-
+  
   return [platformTheStickHits, false];
 }
 
@@ -227,13 +226,13 @@ function draw() {
   drawguy();
   drawSticks();
 
-  // Restore transformation
+  // restore transformation
   ctx.restore();
 }
 
 function drawPlatforms() {
   platforms.forEach(({ x, w }) => {
-    // Draw platform
+    // draw platform
     ctx.fillStyle = "black";
     ctx.fillRect(
       x, canvasHeight - platformHeight, w, platformHeight + (window.innerHeight - canvasHeight) / 2
@@ -248,12 +247,12 @@ function drawguy() {
     guyX - guyWidth / 2, guyY + canvasHeight - platformHeight - guyHeight / 2
   );
 
-  // Body
+  // body
   drawRoundedRect(
     -guyWidth / 2, -guyHeight / 2, guyWidth, guyHeight - 4, 5
   );
 
-  // Legs
+  // legs
   const legDist = 5;
   ctx.beginPath();
   ctx.arc(legDist, 11.5, 3, 0, Math.PI * 2, false);
@@ -262,7 +261,7 @@ function drawguy() {
   ctx.arc(-legDist, 11.5, 3, 0, Math.PI * 2, false);
   ctx.fill();
 
-  // Eye
+  // eye
   ctx.beginPath();
   ctx.fillStyle = "white";
   ctx.arc(5, -7, 3, 0, Math.PI * 2, false);
@@ -303,5 +302,3 @@ function drawSticks() {
     ctx.restore();
   });
 }
-=======
->>>>>>> parent of 59cf5eb (added main game loop: time-restricted animation, cases for man movement)
