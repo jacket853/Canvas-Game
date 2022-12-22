@@ -118,6 +118,7 @@ window.addEventListener("resize", function (event) {
 });
 
 window.requestAnimationFrame(animate);
+<<<<<<< HEAD
 
 // MAIN GAME LOOP
 function animate(timestamp) {
@@ -302,3 +303,5 @@ function drawSticks() {
     ctx.restore();
   });
 }
+=======
+>>>>>>> parent of 59cf5eb (added main game loop: time-restricted animation, cases for man movement)
