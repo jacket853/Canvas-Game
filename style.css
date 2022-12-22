@@ -15,14 +15,6 @@ body {
   height: 100%;
 }
 
-#score {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  font-size: 2em;
-  font-weight: 900;
-}
-
 #introduction {
   width: 200px;
   height: 150px;

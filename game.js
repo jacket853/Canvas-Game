@@ -118,7 +118,6 @@ window.addEventListener("resize", function (event) {
 });
 
 window.requestAnimationFrame(animate);
-<<<<<<< HEAD
 
 // MAIN GAME LOOP
 function animate(timestamp) {
@@ -210,7 +209,7 @@ function struckPlatform() {
   const platformTheStickHits = platforms.find(
     (platform) => platform.x < stickFarX && stickFarX < platform.x + platform.w
   );
-  
+
   return [platformTheStickHits, false];
 }
 
