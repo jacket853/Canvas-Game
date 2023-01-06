@@ -1,3 +1,17 @@
+/*
+RESEARCH/IDEAS/CONCEPTS
+https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+https://www.geeksforgeeks.org/switch-case-in-javascript/
+https://www.javascripttutorial.net/web-apis/javascript-rotate/
+https://techfunda.com/howto/963/requestanimationframe
+https://www.w3schools.com/js/js_errors.asp
+*/
+
+
+
+
+
 // extend the base functionality of JavaScript
 Array.prototype.last = function () {
   return this[this.length - 1];
