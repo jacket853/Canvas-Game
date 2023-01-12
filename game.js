@@ -6,6 +6,7 @@ https://www.geeksforgeeks.org/switch-case-in-javascript/
 https://www.javascripttutorial.net/web-apis/javascript-rotate/
 https://techfunda.com/howto/963/requestanimationframe
 https://www.w3schools.com/js/js_errors.asp
+https://stackoverflow.com/questions/21316084/requestanimationframe-what-exactly-is-the-timestamp
 */
 
 
@@ -135,7 +136,7 @@ window.requestAnimationFrame(animate);
 
 // MAIN GAME LOOP
 function animate(timestamp) {
-  if (!lastTimestamp) {
+  if (!lastTimestamp) { // when undefined
     lastTimestamp = timestamp;
     window.requestAnimationFrame(animate);
     return;
