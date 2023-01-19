@@ -2,6 +2,7 @@
 RESEARCH/IDEAS/CONCEPTS
 https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+https://stackoverflow.com/questions/21945675/extending-array-prototype-in-javascript
 https://www.geeksforgeeks.org/switch-case-in-javascript/
 https://www.javascripttutorial.net/web-apis/javascript-rotate/
 https://techfunda.com/howto/963/requestanimationframe
