@@ -20,6 +20,7 @@ Array.prototype.last = function () {
 
 let phase = "waiting";
 let lastTimestamp;
+let score = 0;
 
 let guyX;
 let guyY;
@@ -41,7 +42,7 @@ const stretchingSpeed = 4; // milliseconds it takes to draw a pixel
 const turningSpeed = 4; // milliseconds it takes to turn a degree
 const walkingSpeed = 4;
 const transitioningSpeed = 2;
-const fallingSpeed = 2;
+const fallingSpeed = 1;
 
 const guyWidth = 17;
 const guyHeight = 30;
@@ -106,6 +107,7 @@ resetGame();
 window.addEventListener("keydown", function (event) {
   if (event.key == " ") {
     event.preventDefault();
+    this.alert("Your final score was: " + score + ". Good job!");
     resetGame();
     return;
   }
@@ -157,6 +159,7 @@ function animate(timestamp) {
 
         const [nextPlatform] = struckPlatform();
         if (nextPlatform) {
+          score += 1;
           generatePlatform();
         }
         phase = "walking";
@@ -168,14 +171,14 @@ function animate(timestamp) {
 
       const [nextPlatform] = struckPlatform();
       if (nextPlatform) {
-        // If guy will reach another platform then limit it's position at it's edge
+        // If guy will reach another platform then limit his position at it's edge
         const maxguyX = nextPlatform.x + nextPlatform.w - guyDistFromEdge;
         if (guyX > maxguyX) {
           guyX = maxguyX;
           phase = "transitioning";
         }
       } else {
-        // If guy won't reach another platform then limit it's position at the end of the pole
+        // If guy won't reach another platform then limit his position at the end of the pole
         const maxguyX = sticks.last().x + sticks.last().length + guyWidth;
         if (guyX > maxguyX) {
           guyX = maxguyX;
